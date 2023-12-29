@@ -28,7 +28,7 @@ class _ScreenFeedbackBotState extends State<ScreenFeedbackBot> {
 
   @override
   void initState() {
-    // TODO: implement initState
+    
     super.initState();
     BlocProvider.of<FeedbackBotBloc>(context).add(FeedbackBotInitialEvent(step: step,),);
   }
@@ -45,17 +45,16 @@ class _ScreenFeedbackBotState extends State<ScreenFeedbackBot> {
     );
   }
 
-  /// Function to build body
   _buildBody() => Column(
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      /// Displaying the intro text and image of the bot
+      
       _buildIntroWidget(),
 
-      /// Padding
+      
       const SizedBox(height: 24.0,),
 
-      /// Displaying the chat between the user and the bot
+     
       _buildChatWidget(),
 
     ],
@@ -70,45 +69,45 @@ class _ScreenFeedbackBotState extends State<ScreenFeedbackBot> {
           width: mediaQuery.size.width * 0.7,
           height: 40.0,
           child: TextField(
-            /// set controller to get the value
+            
             controller: _inputController,
-            /// set decoration to add the prefixIcon and the hint text
+            
             decoration: InputDecoration(
               hintText: 'Type a message',
               fillColor: ThemeColors.secondary100,
               filled: true,
-              /// set hintStyle to adjust the spacing
+              
               hintStyle: TextStyle(
                 fontSize: 16.0,
                 color: ThemeColors.secondary500,
                 fontFamily: 'Roboto',
                 fontWeight: FontWeight.w400,
               ),
-              /// set border to remove the underline
+              
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
                 borderSide: BorderSide.none,
               ),
-              /// set contentPadding to adjust the spacing
+              
               contentPadding: const EdgeInsets.all(10.0),
-              /// set prefixIcon to add the attachment icon
+              
               prefixIcon: Image.asset("assets/attachment.png"),
             ),
           ),
         ),
 
-        /// Padding
+        
         const SizedBox(width: 8.0,),
 
-        /// set IconButton to add the send icon
+        
         ElevatedButton(onPressed: _messages.contains(MessageModel(prompt: "Thank you for your feedback!", isBot: true,)) ? null : () {
-          /// add the event to the bloc
+          
           step++;
           BlocProvider.of<FeedbackBotBloc>(context).add(FeedbackBotNextEvent(step: step,));
-          /// add the message to the list
+          
           _messages.add(MessageModel(prompt: _inputController.text, isBot: false,));
 
-          /// clear the input
+          
           _inputController.clear();
         }, style: ElevatedButton.styleFrom(
           backgroundColor: ThemeColors.primary500,
@@ -121,7 +120,6 @@ class _ScreenFeedbackBotState extends State<ScreenFeedbackBot> {
     ),
   );
 
-  /// Function to build the Widget to display the chat between the user and the bot
   _buildChatWidget() => SizedBox(
     width: mediaQuery.size.width * 0.6,
     height: mediaQuery.size.height * 0.578,
@@ -139,10 +137,10 @@ class _ScreenFeedbackBotState extends State<ScreenFeedbackBot> {
           ),
         ),
 
-        /// Padding
+        
         const SizedBox(height: 10.0,),
 
-        /// Expanded to make the ListView scrollable
+
         SizedBox(
           height: mediaQuery.size.height * 0.5,
           child: BlocBuilder<FeedbackBotBloc, FeedbackBotState>(
@@ -170,24 +168,24 @@ class _ScreenFeedbackBotState extends State<ScreenFeedbackBot> {
     ),
   );
 
-  /// Function to build the intro text and image of the bot
+
   _buildIntroWidget() => SizedBox(
     width: double.infinity / 2,
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        /// Displaying the logo of the chatBot
+        
         buildBotLogo(),
-        /// Padding
+        
         const SizedBox(height: 12.0,),
-        /// Displaying the intro text
+        
         _buildTextWidget(text: 'CentraLogic Bot', fontWeight: FontWeight.w600, fontSize: 24.0, color: ThemeColors.secondary500,),
-        /// Displaying the intro text
+        
         _buildTextWidget(text: 'Hi! I am CentraLogic Bot, your onboarding agent', fontWeight: FontWeight.w400, fontSize: 24.0, color: ThemeColors.secondary500,),
 
-        /// Padding
+        
         const SizedBox(height: 16.0,),
-        /// Divider
+        
         Divider(
           indent: mediaQuery.size.width / 4,
           endIndent: mediaQuery.size.width / 4,
@@ -199,21 +197,21 @@ class _ScreenFeedbackBotState extends State<ScreenFeedbackBot> {
     ),
   );
 
-  /// App Bar
+
   _buildAppBar() => AppBar(
-    /// set automaticallyImplyLeading to false to remove back button
+    
     automaticallyImplyLeading: false,
-    /// ListTile to display title and subtitle
+  
     title: ListTile(
-      /// set contentPadding to adjust the spacing
+     
       contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 32.0,),
-      /// title and subtitle
+     
       title: _buildTextWidget(text: 'Welcome to CentraLogic', fontWeight: FontWeight.w600, fontSize: 24.0, color: ThemeColors.secondary500,),
       subtitle: _buildTextWidget(text: 'Hi Charles!', fontWeight: FontWeight.w400, fontSize: 16.0, color: ThemeColors.secondary500,),
     ),
   );
 
-  /// common text widget
+ 
   _buildTextWidget({required String text, required double fontSize, required Color color, required FontWeight fontWeight,}) => Text(
     text,
     style: TextStyle(
@@ -224,7 +222,7 @@ class _ScreenFeedbackBotState extends State<ScreenFeedbackBot> {
     ),
   );
 
-  /// Function to build the Widget to display the bot's logo
+  
   buildBotLogo() => Container(
     width: 64,
     height: 64,
