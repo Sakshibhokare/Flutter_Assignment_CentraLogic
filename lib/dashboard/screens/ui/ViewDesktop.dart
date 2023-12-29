@@ -2,6 +2,8 @@ import 'package:assignment_4th_flutter/dashboard/bloc/add_user/add_user_bloc.dar
 import 'package:assignment_4th_flutter/dashboard/bloc/documents/document_bloc.dart';
 import 'package:assignment_4th_flutter/dashboard/bloc/window_controller/window_controller_bloc.dart';
 import 'package:assignment_4th_flutter/dashboard/screens/ScreenHomeTab.dart';
+import 'package:assignment_4th_flutter/feedbackBot/bloc/feedbackBot_bloc.dart';
+import 'package:assignment_4th_flutter/feedbackBot/screens/ScreenFeedbackBot.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,6 +34,8 @@ class ViewDesktop extends StatelessWidget {
     },
   ];
 
+  BuildContext? contextMain;
+
   final Widget selectedTab = const ScreenHomeTab();
 
   Size? mediaQuery;
@@ -39,6 +43,7 @@ class ViewDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     mediaQuery =  MediaQuery.of(context).size;
+    contextMain = context;
 
     return SizedBox(
       width: MediaQuery.of(context).size.width,
@@ -168,13 +173,28 @@ class ViewDesktop extends StatelessWidget {
               ),),
           ),
         ),
+
+
+        /// Displaying the button to open the feedback bot
+        GestureDetector(
+          onTap: () {
+            /// Navigate to the feedback bot screen
+            Navigator.of(contextMain!).push(
+              MaterialPageRoute(
+                builder: (context) => BlocProvider(
+                  create: (context) => FeedbackBotBloc(),
+                  child: const ScreenFeedbackBot(),),
+              ),);
+          },
+          child: Image.asset("assets/bot_logo.png", width: MediaQuery.of(contextMain!).size.width * 0.1,),
+        ),
       ],
     ),
   );
 
 
   /// Function to build the icon
-  getTabIcon({required String iconPath, Color color = const Color.fromRGBO(
+  getTabIcon({required String iconPath, Color? color = const Color.fromRGBO(
     48,
     48,
     48,
