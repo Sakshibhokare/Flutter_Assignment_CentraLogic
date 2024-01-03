@@ -7,7 +7,7 @@ import '../../utils/ThemeColors.dart';
 import '../bloc/feedbackBot_bloc.dart';
 import '../bloc/feedbackBot_event.dart';
 import '../widgets/chat_item_widget.dart';
-
+//main screen
 class ScreenFeedbackBot extends StatefulWidget {
   const ScreenFeedbackBot({super.key});
 
@@ -15,6 +15,7 @@ class ScreenFeedbackBot extends StatefulWidget {
   State<ScreenFeedbackBot> createState() => _ScreenFeedbackBotState();
 }
 
+// ui building and event handling logic
 class _ScreenFeedbackBotState extends State<ScreenFeedbackBot> {
   dynamic mediaQuery;
 
@@ -25,7 +26,7 @@ class _ScreenFeedbackBotState extends State<ScreenFeedbackBot> {
   ];
 
   int step = 0;
-
+//use to add initial event
   @override
   void initState() {
     
@@ -34,7 +35,7 @@ class _ScreenFeedbackBotState extends State<ScreenFeedbackBot> {
   }
 
 
-
+// build method creates the ui of the screen
   @override
   Widget build(BuildContext context) {
     mediaQuery = MediaQuery.of(context);
@@ -120,6 +121,7 @@ class _ScreenFeedbackBotState extends State<ScreenFeedbackBot> {
     ),
   );
 
+  // The BlocBuilder is used to rebuild the chat widget based on the state of the FeedbackBotBloc
   _buildChatWidget() => SizedBox(
     width: mediaQuery.size.width * 0.6,
     height: mediaQuery.size.height * 0.578,
